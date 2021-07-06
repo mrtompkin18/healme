@@ -22,8 +22,14 @@ const DialogBox = ({
     zipcode: "",
   });
 
-  const backdrop = {
-    visible: { opacity: 1, y: "10px" },
+  const modal = {
+    visible: {
+      opacity: 1,
+      y: "10px",
+      transition: {
+        delay: 1,
+      },
+    },
     hidden: { opacity: 0, y: "-10vh" },
   };
 
@@ -31,7 +37,7 @@ const DialogBox = ({
     visible: {
       opacity: 1,
       transition: {
-        delay: 0.5,
+        delay: 0.35,
       },
     },
     hidden: { opacity: 0 },
@@ -61,7 +67,7 @@ const DialogBox = ({
         <Fragment>
           <motion.div
             className="fixed z-50 inset-0 overflow-y-auto"
-            variants={backdrop}
+            variants={modal}
             initial="hidden"
             animate="visible"
             exit="hidden"

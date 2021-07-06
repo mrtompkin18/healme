@@ -1,13 +1,14 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
+import _ from "lodash";
 import { useForm } from "react-hook-form";
 import { FiUpload } from "react-icons/fi";
-import _ from "lodash";
 
 import Logo from "@components/svg/SvgLogo";
 import Title from "@components/form/Title";
 import PureInputField from "@components/form/PureInputField";
 import Button from "@components/button/Button";
 import AddressModal from "@components/form/AddressModal";
+import DatePicker from "@components/form/DatePicker";
 
 const Form = () => {
   const [isOpenAddressModel, setIsOpenAddressModel] = useState(false);
@@ -42,6 +43,12 @@ const Form = () => {
       }),
       errors: errors["address"],
     },
+    dateOfInjection: {
+      validator: register("dateOfInjection", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["dateOfInjection"],
+    },
   };
 
   function onCloseAddressModal() {
@@ -52,9 +59,13 @@ const Form = () => {
     console.log(data);
   }
 
-  function onSubmitAddressModal(data) {
+  function onSubmitAddress(data) {
     const addressData = `${data["district"]} ${data["amphoe"]} ${data["province"]} ${data["zipcode"]}`;
     setValue("address", addressData?.trim(), { shouldValidate: true });
+  }
+
+  function onSelectedDate(date) {
+    setValue("dateOfInjection", date, { shouldValidate: true });
   }
 
   return (
@@ -62,7 +73,7 @@ const Form = () => {
       <AddressModal
         isOpen={isOpenAddressModel}
         onOpenModel={onCloseAddressModal}
-        onSubmit={onSubmitAddressModal}
+        onSubmit={onSubmitAddress}
       />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col space-y-3">
@@ -146,7 +157,14 @@ const Form = () => {
           <div className="group mt-8">
             <Title number="4" text="รายละเอียดการติดเชื้อโควิด" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <PureInputField label="วันที่ตรวจพบเชื้อโควิด" />
+              <DatePicker
+                label="วันที่ตรวจพบเชื้อโควิด"
+                name="dateOfInjection"
+                className="input-field"
+                placeholder="วัน/เดือน/ปี"
+                setDate={(date) => onSelectedDate(date)}
+                errors={validators.dateOfInjection.errors}
+              />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <PureInputField label="สถานที่ตรวจพบเชื้อโควิด" />

@@ -38,8 +38,12 @@ body {
     @apply text-field border rounded-md shadow-inner p-3 my-2 w-full font-anakotmai-medium text-black;
 }
 
+.error-field {
+    @apply border-red-500 bg-red-100 border;
+}
+
 .overlay {
-    @apply fixed inset-0 backdrop-filter bg-opacity-30 backdrop-blur-xl w-screen h-screen z-10;
+    @apply fixed inset-0 backdrop-filter backdrop-blur-3xl w-screen h-screen z-10;
 }
 
 .svg-alert {

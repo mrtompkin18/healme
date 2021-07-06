@@ -1,20 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import ReactDatePicker from "react-datepicker";
 import cn from "classnames";
-import _ from "lodash";
 
-const PureInputField = ({
+const DatePicker = ({
   name = "",
   label = "",
-  type = "text",
   className = "",
   placeholder = "",
   inputClassName = "",
+  dateFormat = "dd/MM/yyyy",
   disabled = false,
   readonly = false,
-  validator = {},
+  setDate = () => {},
   errors = {},
-  onInputFocus = () => {},
 }) => {
+  const [selectedDate, setSelectedDate] = useState(new Date());
   return (
     <div
       className={cn(
@@ -23,18 +23,21 @@ const PureInputField = ({
       )}
     >
       <label htmlFor={name}>{label}</label>
-      <input
+      <ReactDatePicker
         name={name}
         className={cn("input-field", {
           inputClassName,
           "error-field": !!errors.message,
         })}
-        type={type}
-        placeholder={placeholder}
+        placeholderText={placeholder}
         disabled={disabled}
         readOnly={readonly}
-        onFocus={onInputFocus}
-        {...validator}
+        selected={selectedDate}
+        dateFormat={dateFormat}
+        onChange={(date) => {
+          setSelectedDate(date);
+          setDate(date);
+        }}
       />
       {errors && (
         <span className="text-red-500 my-2 font-anakotmai-medium">
@@ -45,4 +48,4 @@ const PureInputField = ({
   );
 };
 
-export default React.memo(PureInputField);
+export default React.memo(DatePicker);

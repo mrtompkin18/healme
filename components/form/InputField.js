@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import cn from "classnames";
 
 const InputField = ({
   name = "",
@@ -28,12 +29,15 @@ const InputField = ({
 
   return (
     <div
-      className={`w-full flex flex-col space-y-2 text-gray-500 mt-5 text-sm ${className}`}
+      className={cn(
+        "w-full flex flex-col space-y-2 text-gray-500 mt-5 text-sm",
+        { className }
+      )}
     >
       <label htmlFor={name}>{label}</label>
       <input
         name={name}
-        className={`input-field ${inputClassName}`}
+        className={cn("input-field", { inputClassName })}
         type={type}
         ref={inputRef}
         onChange={onChangeValue}

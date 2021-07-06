@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import SvgAlertAnimate from "@components/svg/SvgAlertAnimate";
 
+import "react-datepicker/dist/react-datepicker.css";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
