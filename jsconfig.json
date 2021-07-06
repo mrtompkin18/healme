@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "checkJs": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "target": "es2020",
+    "module": "es2015",
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@hooks/*": [
+        "hooks/*"
+      ],
+    }
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "build",
+    ".vscode",
+    ".next",
+    "coverage",
+    ".npm",
+    ".yarn"
+  ],
+  "typeAcquisition": {
+    "enable": true,
+    "include": [
+      "react",
+      "react-dom"
+    ]
+  }
+}

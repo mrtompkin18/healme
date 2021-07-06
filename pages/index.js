@@ -1,65 +1,43 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useRouter } from "next/router";
+
+import Logo from "@components/svg/SvgLogo";
+import Button from "@components/button/Button";
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+    <div className="h-screen flex flex-col justify-center">
+      <div className="flex flex-col space-y-8">
+        <h1 className="flex flex-row space-x-5 text-6xl sm:text-8xl items-center">
+          <Logo className="logo" />
+          <p className="font-manrope">HealMe</p>
         </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className="flex flex-col">
+          <p className="font-anakotmai-medium text-3xl">
+            ระบบลงทะเบียนสำหรับผู้ติดโควิดรอรับการรักษา
+          </p>
+          <span className="text-xl mt-5">
+            ระบบลงทะเบียนเพื่อช่วยหาเตียงสำหรับผู้ป่วยโควิดที่รอรับการรักษา
+            <br />
+            ระบบนี้จัดทำขึ้นเพื่อการศึกษาเท่านั้น
+          </span>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+          <Button
+            className="w-auto bg-secondary-500 hover:bg-secondary-600 font-anakotmai-medium"
+            onClickButton={() => router.push("/form")}
+          >
+            ลงทะเบียน
+          </Button>
+          <Button
+            className="w-auto bg-primary-500 hover:bg-primary-600 font-anakotmai-medium"
+            onClickButton={() => alert("")}
+          >
+            ตรวจเช็คสถานะ
+          </Button>
+        </div>
+      </div>
     </div>
-  )
+  );
 }

@@ -1,16 +1,51 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+@font-face {
+    font-family: "anakotmai-bold";
+    src: local("anakotmai-bold"),
+        url("./fonts/anakotmai-bold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "anakotmai-medium";
+    src: local("anakotmai-medium"),
+        url("./fonts/anakotmai-medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: "anakotmai-light";
+    src: local("anakotmai-light"),
+        url("./fonts/anakotmai-light.woff") format("woff");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    @apply w-screen max-h-full text-white bg-gradient-to-tr from-primary-500 to-secondary-500 font-anakotmai-light overflow-x-hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.logo {
+    max-width: 65px;
 }
 
-* {
-  box-sizing: border-box;
+.text-field::placeholder{
+   @apply font-anakotmai-light text-gray-400;
+}
+
+.input-field {
+    @apply text-field border rounded-md shadow-inner p-3 my-2 w-full font-anakotmai-medium text-black;
+}
+
+.overlay {
+    @apply fixed inset-0 backdrop-filter bg-opacity-30 backdrop-blur-xl w-screen h-screen z-10;
+}
+
+.svg-alert {
+    width: 1200px;
+    position: absolute;
+    top: -430px;
+    right: -300px;
+    z-index: 0;
 }
