@@ -14,7 +14,7 @@ const DatePicker = ({
   setDate = () => {},
   errors = {},
 }) => {
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState();
   return (
     <div
       className={cn(

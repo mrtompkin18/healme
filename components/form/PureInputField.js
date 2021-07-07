@@ -13,8 +13,13 @@ const PureInputField = ({
   readonly = false,
   validator = {},
   errors = {},
+  min = undefined,
+  max = undefined,
   onInputFocus = () => {},
 }) => {
+  const properties =
+    type === "number" ? { min, max } : { minLength: min, maxLength: max };
+
   return (
     <div
       className={cn(
@@ -27,7 +32,7 @@ const PureInputField = ({
         name={name}
         className={cn("input-field", {
           inputClassName,
-          "error-field": !!errors.message,
+          "error-field": errors.message,
         })}
         type={type}
         placeholder={placeholder}
@@ -35,6 +40,7 @@ const PureInputField = ({
         readOnly={readonly}
         onFocus={onInputFocus}
         {...validator}
+        {...properties}
       />
       {errors && (
         <span className="text-red-500 my-2 font-anakotmai-medium">

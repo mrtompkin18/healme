@@ -37,6 +37,16 @@ const Form = () => {
       }),
       errors: errors["lastName"],
     },
+    idcardNo: {
+      validator: register("idcardNo", {
+        required: "จำเป็นต้องกรอก",
+        pattern: {
+          value: /^[0-9]{13}$/,
+          message: "เลขบัตรประชาชนไม่ถูกต้อง",
+        },
+      }),
+      errors: errors["idcardNo"],
+    },
     address: {
       validator: register("address", {
         required: "จำเป็นต้องกรอก",
@@ -106,22 +116,26 @@ const Form = () => {
               />
             </div>
             <div className="grid grid-cols-4 gap-3">
-              <PureInputField type="number" label="อายุ" />
+              <PureInputField type="number" label="อายุ" min="0" />
               <PureInputField
-                type="number"
+                name="idcardNo"
                 label="เลขบัตรประชาชน"
                 className="col-span-3"
+                validator={validators.idcardNo.validator}
+                errors={validators.idcardNo.errors}
               />
             </div>
             <div className="grid grid-cols-3 gap-3">
               <PureInputField
                 type="number"
                 label="น้ำหนัก"
+                min="0"
                 className="col-span-1 md:col-auto"
               />
               <PureInputField
                 type="number"
                 label="ส่วนสูง"
+                min="0"
                 className="col-span-2 md:col-auto"
               />
               <PureInputField
