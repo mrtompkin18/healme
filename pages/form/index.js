@@ -115,12 +115,12 @@ const Form = () => {
                 errors={validators.lastName.errors}
               />
             </div>
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <PureInputField type="number" label="อายุ" min="0" />
               <PureInputField
                 name="idcardNo"
                 label="เลขบัตรประชาชน"
-                className="col-span-3"
+                className="col-span-2"
                 validator={validators.idcardNo.validator}
                 errors={validators.idcardNo.errors}
               />
@@ -174,7 +174,6 @@ const Form = () => {
               <DatePicker
                 label="วันที่ตรวจพบเชื้อโควิด"
                 name="dateOfInjection"
-                className="input-field"
                 placeholder="วัน/เดือน/ปี"
                 setDate={(date) => onSelectedDate(date)}
                 errors={validators.dateOfInjection.errors}

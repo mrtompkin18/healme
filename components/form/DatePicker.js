@@ -17,10 +17,7 @@ const DatePicker = ({
   const [selectedDate, setSelectedDate] = useState();
   return (
     <div
-      className={cn(
-        "w-full flex flex-col space-y-2 text-gray-500 mt-5 text-sm",
-        { className }
-      )}
+      className={`w-full flex flex-col space-y-2 text-gray-500 mt-5 text-sm ${className}`.trim()}
     >
       <label htmlFor={name}>{label}</label>
       <ReactDatePicker
