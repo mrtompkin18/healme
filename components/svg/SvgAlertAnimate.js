@@ -1,8 +1,17 @@
-import { memo } from "react";
+import { memo, useContext } from "react";
+import { motion } from "framer-motion";
+import { SvgAnimateContext } from "@contexts/SvgAnimateContext";
 
-const SvgAlertAnimate = (props) => {
+const SvgAlertAnimate = () => {
+  const { animate } = useContext(SvgAnimateContext);
+
   return (
-    <div {...props}>
+    <motion.div
+      className="svg-alert"
+      variants={animate}
+      initial="hidden"
+      animate="visible"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -127,7 +136,7 @@ const SvgAlertAnimate = (props) => {
           </circle>
         </g>
       </svg>
-    </div>
+    </motion.div>
   );
 };
 

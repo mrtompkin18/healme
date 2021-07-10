@@ -46,9 +46,13 @@ body {
     @apply fixed inset-0 backdrop-filter backdrop-blur-3xl w-screen h-screen z-10;
 }
 
+.date-picker-btn {
+    @apply bg-white p-2 text-black rounded-md cursor-pointer shadow-md;
+}
+
 .svg-alert {
     width: 1200px;
-    position: absolute;
+    position: fixed;
     top: -430px;
     right: -300px;
     z-index: 0;

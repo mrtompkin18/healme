@@ -19,6 +19,9 @@
       "@hooks/*": [
         "hooks/*"
       ],
+      "@contexts/*": [
+        "contexts/*"
+      ],
     }
   },
   "exclude": [

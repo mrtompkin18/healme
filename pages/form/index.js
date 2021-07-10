@@ -59,6 +59,36 @@ const Form = () => {
       }),
       errors: errors["dateOfInjection"],
     },
+    age: {
+      validator: register("age", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["age"],
+    },
+    weight: {
+      validator: register("weight", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["weight"],
+    },
+    height: {
+      validator: register("height", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["height"],
+    },
+    phoneNumber: {
+      validator: register("phoneNumber", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["phoneNumber"],
+    },
+    hospital: {
+      validator: register("hospital", {
+        required: "จำเป็นต้องกรอก",
+      }),
+      errors: errors["hospital"],
+    },
   };
 
   function onCloseAddressModal() {
@@ -116,7 +146,13 @@ const Form = () => {
               />
             </div>
             <div className="grid grid-cols-3 gap-3">
-              <PureInputField type="number" label="อายุ" min="0" />
+              <PureInputField
+                type="number"
+                label="อายุ"
+                min="0"
+                validator={validators.age.validator}
+                errors={validators.age.errors}
+              />
               <PureInputField
                 name="idcardNo"
                 label="เลขบัตรประชาชน"
@@ -131,12 +167,16 @@ const Form = () => {
                 label="น้ำหนัก"
                 min="0"
                 className="col-span-1 md:col-auto"
+                validator={validators.weight.validator}
+                errors={validators.weight.errors}
               />
               <PureInputField
                 type="number"
                 label="ส่วนสูง"
                 min="0"
                 className="col-span-2 md:col-auto"
+                validator={validators.height.validator}
+                errors={validators.height.errors}
               />
               <PureInputField
                 label="โรคประจำตัว (ถ้ามี)"
@@ -164,7 +204,12 @@ const Form = () => {
           <div className="group mt-8">
             <Title number="3" text="การติดต่อ" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <PureInputField type="number" label="เบอร์มือถือหลัก" />
+              <PureInputField
+                type="number"
+                label="เบอร์มือถือหลัก"
+                validator={validators.phoneNumber.validator}
+                errors={validators.phoneNumber.errors}
+              />
               <PureInputField type="number" label="เบอร์มือถือสำรอง (ถ้ามี)" />
             </div>
           </div>
@@ -180,7 +225,11 @@ const Form = () => {
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <PureInputField label="สถานที่ตรวจพบเชื้อโควิด" />
+              <PureInputField
+                label="สถานที่ตรวจพบเชื้อโควิด (ชื่อสถานที่)"
+                validator={validators.hospital.validator}
+                errors={validators.hospital.errors}
+              />
             </div>
             <Button className="text-primary-700 bg-primary-100 font-anakotmai text-sm mt-5">
               <div className="flex flex-row items-center space-x-3">
