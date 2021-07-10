@@ -9,6 +9,7 @@ import PureInputField from "@components/form/PureInputField";
 import Button from "@components/button/Button";
 import AddressModal from "@components/form/AddressModal";
 import DatePicker from "@components/form/DatePicker";
+import { REGEX_ID_CARD, REGEX_PHONE_NUMBER } from "@constants/common";
 
 const Form = () => {
   const [isOpenAddressModel, setIsOpenAddressModel] = useState(false);
@@ -41,7 +42,7 @@ const Form = () => {
       validator: register("idcardNo", {
         required: "จำเป็นต้องกรอก",
         pattern: {
-          value: /^[0-9]{13}$/,
+          value: REGEX_ID_CARD,
           message: "เลขบัตรประชาชนไม่ถูกต้อง",
         },
       }),
@@ -80,8 +81,21 @@ const Form = () => {
     phoneNumber: {
       validator: register("phoneNumber", {
         required: "จำเป็นต้องกรอก",
+        pattern: {
+          value: REGEX_PHONE_NUMBER,
+          message: "กรอกเบอร์โทรไม่ถูกต้อง",
+        },
       }),
       errors: errors["phoneNumber"],
+    },
+    phoneNumber2: {
+      validator: register("phoneNumber2", {
+        pattern: {
+          value: REGEX_PHONE_NUMBER,
+          message: "กรอกเบอร์โทรไม่ถูกต้อง",
+        },
+      }),
+      errors: errors["phoneNumber2"],
     },
     hospital: {
       validator: register("hospital", {
@@ -205,12 +219,15 @@ const Form = () => {
             <Title number="3" text="การติดต่อ" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <PureInputField
-                type="number"
                 label="เบอร์มือถือหลัก"
                 validator={validators.phoneNumber.validator}
                 errors={validators.phoneNumber.errors}
               />
-              <PureInputField type="number" label="เบอร์มือถือสำรอง (ถ้ามี)" />
+              <PureInputField
+                label="เบอร์มือถือสำรอง (ถ้ามี)"
+                validator={validators.phoneNumber2.validator}
+                errors={validators.phoneNumber2.errors}
+              />
             </div>
           </div>
           <div className="group mt-8">
@@ -231,7 +248,7 @@ const Form = () => {
                 errors={validators.hospital.errors}
               />
             </div>
-            <Button className="text-primary-700 bg-primary-100 font-anakotmai text-sm mt-5">
+            <Button className="text-primary-700 bg-white shadow-sm border font-anakotmai-medium text-sm mt-5">
               <div className="flex flex-row items-center space-x-3">
                 <FiUpload /> <p>อัพโหลดเอกสาร</p>
               </div>
