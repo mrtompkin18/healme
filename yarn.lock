@@ -1485,7 +1485,12 @@
   dependencies:
     "querystring" "^0.2.0"
 
-"next@11.0.1":
+"next-seo@^4.26.0":
+  "integrity" "sha512-5TqywQ3XAwqdmEU1AyNZjR7WdDKFTkDD8aBtgQelPvzBUEy8i0mTjtiw+09jhiHFNik6FqS8uPKCaYcY6jRgSQ=="
+  "resolved" "https://registry.npmjs.org/next-seo/-/next-seo-4.26.0.tgz"
+  "version" "4.26.0"
+
+"next@^8.1.1-canary.54 || >=9.0.0", "next@11.0.1":
   "integrity" "sha512-yR7be7asNbvpVNpi6xxEg28wZ7Gqmj1nOt0sABH9qORmF3+pms2KZ7Cng33oK5nqPIzEEFJD0pp2PCe3/ueMIg=="
   "resolved" "https://registry.yarnpkg.com/next/-/next-11.0.1.tgz"
   "version" "11.0.1"
@@ -1978,7 +1983,7 @@
     "react-onclickoutside" "^6.10.0"
     "react-popper" "^2.2.5"
 
-"react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.9.0 || ^17", "react-dom@^17.0.2", "react-dom@>=16.8 || ^17.0.0", "react-dom@17.0.2":
+"react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.9.0 || ^17", "react-dom@^17.0.2", "react-dom@>=16.0.0", "react-dom@>=16.8 || ^17.0.0", "react-dom@17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -2030,7 +2035,7 @@
   "resolved" "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz"
   "version" "0.8.3"
 
-"react@*", "react@^15.5.x || ^16.x || ^17.x", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.9.0 || ^17", "react@^17.0.2", "react@>=16.8 || ^17.0.0", "react@15.x.x || 16.x.x || 17.x.x", "react@17.0.2":
+"react@*", "react@^15.5.x || ^16.x || ^17.x", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.9.0 || ^17", "react@^17.0.2", "react@>=16.0.0", "react@>=16.8 || ^17.0.0", "react@15.x.x || 16.x.x || 17.x.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
