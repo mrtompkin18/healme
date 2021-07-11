@@ -55,5 +55,5 @@ body {
     position: fixed;
     top: -430px;
     right: -300px;
-    z-index: 0;
+    z-index: -1;
 }
