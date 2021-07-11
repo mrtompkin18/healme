@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import _ from "lodash";
-import { useForm } from "react-hook-form";
-import { FiUpload } from "react-icons/fi";
+import { FiUpload, FiFile, FiXSquare } from "react-icons/fi";
 
 import Logo from "@components/svg/SvgLogo";
 import Title from "@components/form/Title";
@@ -9,101 +7,14 @@ import PureInputField from "@components/form/PureInputField";
 import Button from "@components/button/Button";
 import AddressModal from "@components/form/AddressModal";
 import DatePicker from "@components/form/DatePicker";
-import { REGEX_ID_CARD, REGEX_PHONE_NUMBER } from "@constants/common";
+import { useFileUpload } from "@hooks/useFileUpload";
+import { useValidateRegisterForm } from "@hooks/useFormValidate";
+import { elipsis } from "@utils/index";
 
 const Form = () => {
   const [isOpenAddressModel, setIsOpenAddressModel] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm();
-
-  const validators = {
-    firstName: {
-      validator: register("firstName", {
-        required: "จำเป็นต้องกรอก",
-        maxLength: {
-          value: 5,
-          message: "กรอกตัวอักษรได้ไม่เกิน 5 ตัว",
-        },
-      }),
-      errors: errors["firstName"],
-    },
-    lastName: {
-      validator: register("lastName", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["lastName"],
-    },
-    idcardNo: {
-      validator: register("idcardNo", {
-        required: "จำเป็นต้องกรอก",
-        pattern: {
-          value: REGEX_ID_CARD,
-          message: "เลขบัตรประชาชนไม่ถูกต้อง",
-        },
-      }),
-      errors: errors["idcardNo"],
-    },
-    address: {
-      validator: register("address", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["address"],
-    },
-    dateOfInjection: {
-      validator: register("dateOfInjection", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["dateOfInjection"],
-    },
-    age: {
-      validator: register("age", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["age"],
-    },
-    weight: {
-      validator: register("weight", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["weight"],
-    },
-    height: {
-      validator: register("height", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["height"],
-    },
-    phoneNumber: {
-      validator: register("phoneNumber", {
-        required: "จำเป็นต้องกรอก",
-        pattern: {
-          value: REGEX_PHONE_NUMBER,
-          message: "กรอกเบอร์โทรไม่ถูกต้อง",
-        },
-      }),
-      errors: errors["phoneNumber"],
-    },
-    phoneNumber2: {
-      validator: register("phoneNumber2", {
-        pattern: {
-          value: REGEX_PHONE_NUMBER,
-          message: "กรอกเบอร์โทรไม่ถูกต้อง",
-        },
-      }),
-      errors: errors["phoneNumber2"],
-    },
-    hospital: {
-      validator: register("hospital", {
-        required: "จำเป็นต้องกรอก",
-      }),
-      errors: errors["hospital"],
-    },
-  };
+  const [validators, handleSubmit, setFormValue] = useValidateRegisterForm();
+  const [file, selectFile, clearFile] = useFileUpload();
 
   function onCloseAddressModal() {
     setIsOpenAddressModel(false);
@@ -115,11 +26,37 @@ const Form = () => {
 
   function onSubmitAddress(data) {
     const addressData = `${data["district"]} ${data["amphoe"]} ${data["province"]} ${data["zipcode"]}`;
-    setValue("address", addressData?.trim(), { shouldValidate: true });
+    setFormValue("address", addressData?.trim(), { shouldValidate: true });
   }
 
   function onSelectedDate(date) {
-    setValue("dateOfInjection", date, { shouldValidate: true });
+    setFormValue("dateOfInjection", date, { shouldValidate: true });
+  }
+
+  function onUploadFile(file) {
+    setFormValue("paperFile", file);
+  }
+
+  function displayFile() {
+    if (!file) return;
+    return (
+      <div className="p-2 my-4 border border-dashed rounded-md flex items-center justify-between bg-gray-50">
+        <div className="flex items-center space-x-3">
+          <FiFile size="38" />
+          <div className="flex flex-col flex-wrap">
+            <span className="font-anakotmai-medium text-sm">
+              ชื่อไฟล์ {elipsis(file.name, 30)}
+            </span>
+            <span className="font-anakotmai-light text-xs text-gray-400">
+              ขนาดไฟล์ {file.size} bytes
+            </span>
+          </div>
+        </div>
+        <div className="cursor-pointer text-red-500" onClick={clearFile}>
+          <FiXSquare size="22" />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -248,11 +185,19 @@ const Form = () => {
                 errors={validators.hospital.errors}
               />
             </div>
-            <Button className="text-primary-700 bg-white shadow-sm border font-anakotmai-medium text-sm mt-5">
+            <Button
+              className="text-primary-600 shadow-md border font-anakotmai-medium text-sm mt-5 hover:bg-gray-50"
+              onClickButton={() =>
+                selectFile(".png,.jpeg,jpg,.pdf", (file) => {
+                  onUploadFile(file.file);
+                })
+              }
+            >
               <div className="flex flex-row items-center space-x-3">
                 <FiUpload /> <p>อัพโหลดเอกสาร</p>
               </div>
             </Button>
+            <div>{displayFile()}</div>
           </div>
           <hr className="my-5" />
           <div className="flex flex-row justify-center items-center">

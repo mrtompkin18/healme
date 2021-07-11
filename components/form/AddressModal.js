@@ -1,5 +1,5 @@
 import React, { Fragment, useMemo, useState } from "react";
-import _ from "lodash";
+import sortBy from "lodash/sortBy";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronsRight } from "react-icons/fi";
 
@@ -13,7 +13,7 @@ const DialogBox = ({
   onOpenModel = () => {},
   onSubmit = () => {},
 }) => {
-  const thailandAddress = useMemo(() => _.sortBy(thailandDB, ["zipcode"]), []);
+  const thailandAddress = useMemo(() => sortBy(thailandDB, ["zipcode"]), []);
 
   const [address, setAddress] = useState({
     district: "",

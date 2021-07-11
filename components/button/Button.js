@@ -9,7 +9,7 @@ const Button = ({
   return (
     <button
       type={type}
-      className={`py-5 px-6 bg-black hover:bg-gray-800 text-white rounded-md ${className} transition-all`}
+      className={`py-5 px-6 text-white rounded-md ${className} transition-all`}
       onClick={onClickButton}
     >
       {children}
